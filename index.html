@@ -158,6 +158,198 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-weexPro" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/28/weexPro/">Weex 项目搭建（iOS）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/28/weexPro/" class="archive-article-date">
+  	<time datetime="2017-09-28T02:29:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><p>1.Mac系统（10.6 以上）<br>2.Xcode IDE<br>3.node.js<br>4.npm 包管理工具</p>
+<h3 id="安装工具"><a href="#安装工具" class="headerlink" title="安装工具"></a>安装工具</h3><p>1.打开终端，安装weex-toolkit<br>weex-toolkit 是官方提供的一个脚手架命令行工具，你可以使用它进行 Weex 项目的创建，调试以及打包等功能。使用 npm 安装:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo npm install -g weex-toolkit</div></pre></td></tr></table></figure></p>
+<p>我这里安装出错，执行以下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo chmod 777 ~</div><div class="line">mkdir ~/.xtoolkit</div><div class="line">chmod 777 .xtoolkit</div><div class="line">再执行sudo npm install -g weex-toolkit进行安装</div></pre></td></tr></table></figure></p>
+<p>安装成功后，输入weex，会出现以下提示内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">admindeMacBook-Pro:~ user$ weex</div><div class="line"></div><div class="line">Usage: weex &lt;foo/bar/we_file_or_dir_path&gt;  [options]</div><div class="line"></div><div class="line">选项：</div><div class="line">  --port    http listening port number ,default is 8081           [默认值: 8081]</div><div class="line">  --wsport  websocket listening port number ,default is 8082      [默认值: 8082]</div><div class="line">  --entry   the entry file in a folder</div><div class="line"></div><div class="line"></div><div class="line">where &lt;command&gt; is one of:</div><div class="line"></div><div class="line">  init                                   create a vue project (removed)</div><div class="line">  update                                 update weex package version</div><div class="line">  debug                                  start weex debugger</div><div class="line">  compile                                compile we/vue file</div><div class="line">  create                                 create a weexpack project</div><div class="line">  platform &lt;add|remove&gt; &lt;ios|android&gt;    add/remove ios/android platform</div><div class="line">  plugin &lt;add|remove&gt; &lt;pluginName&gt;       add/remove weexplugin</div><div class="line">  run &lt;ios|android&gt;                      build your ios/android app and run</div><div class="line"></div><div class="line">  weex &lt;command&gt; --help      help on &lt;command&gt;</div></pre></td></tr></table></figure></p>
+<p>2.安装weexpack<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo npm install -g weexpack</div></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="初始化工程"><a href="#初始化工程" class="headerlink" title="初始化工程"></a>初始化工程</h3><p>1.创建目录工程目录（～/weex）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir weex</div><div class="line">cd weex</div></pre></td></tr></table></figure></p>
+<p>2.创建工程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">weexpack create WeexApp</div></pre></td></tr></table></figure></p>
+<p>生成工程目录如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">└── WeexApp</div><div class="line">    ├── README.md</div><div class="line">    ├── android.config.json</div><div class="line">    ├── config.xml</div><div class="line">    ├── hooks</div><div class="line">    │   └── README.md</div><div class="line">    ├── ios.config.json</div><div class="line">    ├── npm-shrinkwrap.json</div><div class="line">    ├── package.json</div><div class="line">    ├── platforms</div><div class="line">    ├── plugins</div><div class="line">    │   └── README.md</div><div class="line">    ├── src</div><div class="line">    │   └── index.vue</div><div class="line">    ├── start</div><div class="line">    ├── start.bat</div><div class="line">    ├── temp</div><div class="line">    │   └── index.js</div><div class="line">    ├── tools</div><div class="line">    │   └── webpack.config.plugin.js</div><div class="line">    ├── web</div><div class="line">    │   ├── assets</div><div class="line">    │   │   ├── phantom-limb.js</div><div class="line">    │   │   ├── qrcode.js</div><div class="line">    │   │   ├── style.css</div><div class="line">    │   │   └── url.js</div><div class="line">    │   ├── index.dev.html</div><div class="line">    │   └── index.html</div><div class="line">    ├── webpack.config.js</div><div class="line">    └── webpack.dev.js</div><div class="line"></div><div class="line">9 directories, 21 files</div></pre></td></tr></table></figure></p>
+<p>3.安装weex应用模版<br>添加应用模版，官方提供的模版默认支持 weex bundle 调试和插件机制，注意模版名称均为小写，模版被安装到platforms目录下。</p>
+<p>首先进入工程根目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd WeexApp</div></pre></td></tr></table></figure></p>
+<p>然后安装ios模版：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">weexpack platform add ios</div></pre></td></tr></table></figure></p>
+<p>安装完成后，会在platform目录下多出一个ios目录。</p>
+<h3 id="Hello-Weex"><a href="#Hello-Weex" class="headerlink" title="Hello Weex"></a>Hello Weex</h3><p>Weex开发使用了VUE的框架，初始化工程后，weex自带hello示例代码，位于./src/index.vue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">  &lt;div class=&quot;wrapper&quot; @click=&quot;update&quot;&gt;</div><div class="line">    &lt;image :src=&quot;logoUrl&quot; class=&quot;logo&quot;&gt;&lt;/image&gt;</div><div class="line">    &lt;text class=&quot;title&quot;&gt;Hello &#123;&#123;target&#125;&#125;&lt;/text&gt;</div><div class="line">    &lt;text class=&quot;desc&quot;&gt;Now, let&apos;s use vue to build your weex app.&lt;/text&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line">  .wrapper &#123; align-items: center; margin-top: 120px; &#125;</div><div class="line">  .title &#123; padding-top:40px; padding-bottom: 40px; font-size: 48px; &#125;</div><div class="line">  .logo &#123; width: 360px; height: 156px; &#125;</div><div class="line">  .desc &#123; padding-top: 20px; color:#888; font-size: 24px;&#125;</div><div class="line">&lt;/style&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">  export default &#123;</div><div class="line">    data: &#123;</div><div class="line">      logoUrl: &apos;http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png&apos;,</div><div class="line">      target: &apos;World&apos;</div><div class="line">    &#125;,</div><div class="line">    methods: &#123;</div><div class="line">      update: function (e) &#123;</div><div class="line">        this.target = &apos;Weex&apos;</div><div class="line">        console.log(&apos;target:&apos;, this.target)</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="运行工程"><a href="#运行工程" class="headerlink" title="运行工程"></a>运行工程</h3><p>1.Web</p>
+<p>执行如下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run bulid</div></pre></td></tr></table></figure></p>
+<p>我这里出错了，更新已经安装的NPM库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo npm update -g</div></pre></td></tr></table></figure></p>
+<p>更新nodejs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo npm install -g n </div><div class="line">n latest</div></pre></td></tr></table></figure></p>
+<p>再次执行build命令成功。</p>
+<p>接下来启动服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run dev &amp; npm run serve</div></pre></td></tr></table></figure></p>
+<p>报错 ERROR in xxx.js from UglifyJs<br>这是因为webpack在打包vue文件时没有成功转换ES6的语法(<a href="https://segmentfault.com/a/1190000011212544" target="_blank" rel="external">解决方法</a>)</p>
+<p>也可以执行单页调试:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo weex src/index.vue</div></pre></td></tr></table></figure></p>
+<p>2.虚拟机&amp;真机运行</p>
+<p>官方启动指令：<br><figure class="highlight plain"><figcaption><span>weex run ios</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">或者</div><div class="line">```weexpack run ios</div></pre></td></tr></table></figure></p>
+<p>这两个指令运行坑超多，问题难以排查</p>
+<p>弃坑使用xocde神器运行：<br>进入platform/ios/ 目录下，使用Xcode打开WeexDemo.xcworkspace<br>在Xcode设置界面简单配置下Identity模块，如需要真机运行，则给苹果爸爸交完奶粉钱后获得开发者账号配置下Signing模块。</p>
+<p>接下来打包最新代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">weex build ios</div></pre></td></tr></table></figure></p>
+<p>注意，执行完后直接Control + C退出，继续执行会覆盖之前在Xcode上的配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"> =&gt; pod install</div><div class="line">/Users/user/.rvm/gems/ruby-2.3.0@global/gems/cocoapods-1.3.1/lib/cocoapods/executable.rb:89: warning: Insecure world writable dir /Users/user in PATH, mode 040777</div><div class="line">Analyzing dependencies</div><div class="line">Fetching podspec for `Weexplugin` from `./Weexplugin/`</div><div class="line">Downloading dependencies</div><div class="line">Using ATSDK-Weex (0.0.1)</div><div class="line">Using SDWebImage (3.7.5)</div><div class="line">Using SocketRocket (0.4.2)</div><div class="line">Using WXDevtool (0.15.3)</div><div class="line">Using WeexSDK (0.15.1)</div><div class="line">Using Weexplugin (0.0.1)</div><div class="line">Generating Pods project</div><div class="line">Integrating client project</div><div class="line">Sending stats</div><div class="line">Pod installation complete! There are 6 dependencies from the Podfile and 6 total pods installed.</div><div class="line">============build config============</div><div class="line">AppName=&gt;WeexApp</div><div class="line">Version=&gt;0.1</div><div class="line">BuildVersion=&gt;0.1.0</div><div class="line">? enter your AppId: </div><div class="line">admindeMacBook-Pro:WeexApp user$</div></pre></td></tr></table></figure></p>
+<p>这一步骤主要是利用weex将工程编译后打包成js boundle文件包，输出到platform下的ios目录中：/platforms/ios/bundlejs/index.js</p>
+<p>然后在Xcode中选择模拟器或者真机运行即可。</p>
+<p>如果Xcode编译报错，请自行解决。我遇到’ATSDK/ATManager.h’ file not found的错误(<a href="http://www.jianshu.com/p/88a33c570692" target="_blank" rel="external">解决方法</a>)</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://segmentfault.com/a/1190000010984857#articleHeader14" target="_blank" rel="external">https://segmentfault.com/a/1190000010984857#articleHeader14</a><br><a href="http://weex-project.io/cn/guide/set-up-env.html" target="_blank" rel="external">http://weex-project.io/cn/guide/set-up-env.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">weex</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/IOS//" class="article-tag-list-link color4">IOS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/28/weexPro/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vueInstall" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/27/vueInstall/">vue 项目的环境配置</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/27/vueInstall/" class="archive-article-date">
+  	<time datetime="2017-09-27T09:22:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><p>1.Mac系统（10.6 以上）<br>2.node.js<br>3.npm 包管理工具</p>
+<h3 id="初始化环境"><a href="#初始化环境" class="headerlink" title="初始化环境"></a>初始化环境</h3><blockquote>
+<p>1.打开终端，创建目录工程目录（～/vue）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir vue</div><div class="line">cd vue</div></pre></td></tr></table></figure></p>
+<p>2.安装vue的脚手架<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo npm install -g vue-cli</div></pre></td></tr></table></figure></p>
+<p>3.安装vue模版<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vue init webpack appvue</div></pre></td></tr></table></figure></p>
+<p>4.关于接下来的一些选项（根据自己情况选择）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Project name (vueapp) ---&gt; 直接回车</div><div class="line">Project description (A Vue.js project) ---&gt; 直接回车</div><div class="line">Author (lhuaz &lt;lhuaz@xxx.com&gt;) ---&gt; 直接回车</div><div class="line">Vue build (Use arrow keys) ---&gt; 直接回车</div><div class="line">Install vue-router? (Y/n) ---&gt; n</div><div class="line">Use ESLint to lint your code? ---&gt; n</div><div class="line">Pick an ESLint preset (Use arrow keys) ---&gt; n</div><div class="line">Setup unit tests with Karma + Mocha? (Y/n) ---&gt; n</div><div class="line">Setup e2e tests with Nightwatch? (Y/n) ---&gt; n</div></pre></td></tr></table></figure></p>
+<p>5.经过以上操作终端显示一下信息，代表vue工程初始化成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">? Project name vueapp</div><div class="line">? Project description A Vue.js project</div><div class="line">? Author lhuaz &lt;lhuaz@xxx.com&gt;</div><div class="line">? Vue build standalone</div><div class="line">? Install vue-router? No</div><div class="line">? Use ESLint to lint your code? No</div><div class="line">? Setup unit tests with Karma + Mocha? No</div><div class="line">? Setup e2e tests with Nightwatch? No</div><div class="line"></div><div class="line">   vue-cli · Generated &quot;vueapp&quot;.</div><div class="line"></div><div class="line">   To get started:</div><div class="line">   </div><div class="line">     cd vueapp</div><div class="line">     npm install</div><div class="line">     npm run dev</div><div class="line">   </div><div class="line">   Documentation can be found at https://vuejs-templates.github.io/webpack</div></pre></td></tr></table></figure></p>
+<p>6.按照第5步的终端提示执行以下操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd vueapp</div><div class="line">npm install</div><div class="line">npm run dev</div></pre></td></tr></table></figure></p>
+<p>服务启动后，浏览器会打开工程的hello界面</p>
+</blockquote>
+<p><br></p>
+<h3 id="删除工程的默认hello模版，保持工程干净"><a href="#删除工程的默认hello模版，保持工程干净" class="headerlink" title="删除工程的默认hello模版，保持工程干净"></a>删除工程的默认hello模版，保持工程干净</h3><p>1.删除App.vue文件中的hello模版，即用//注释的4行代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">  &lt;div id=&quot;app&quot;&gt;</div><div class="line">    //&lt;img src=&quot;./assets/logo.png&quot;&gt;</div><div class="line">    //&lt;hello&gt;&lt;/hello&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">//import Hello from &apos;./components/Hello&apos;</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">  name: &apos;app&apos;,</div><div class="line">  components: &#123;</div><div class="line">    //Hello</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line">#app &#123;</div><div class="line">  font-family: &apos;Avenir&apos;, Helvetica, Arial, sans-serif;</div><div class="line">  -webkit-font-smoothing: antialiased;</div><div class="line">  -moz-osx-font-smoothing: grayscale;</div><div class="line">  text-align: center;</div><div class="line">  color: #2c3e50;</div><div class="line">  margin-top: 60px;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure></p>
+<p>2.删除hello.vue文件</p>
+<p>3.此时浏览器什么也不显示，但也没有报错，此时一个干净的工程准备完毕</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/27/vueInstall/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-OpenProject" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -165,7 +357,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/25/OpenProject/">开源项目</a>
+      <a class="article-title" href="/2017/09/25/OpenProject/">开源项目收集</a>
     </h1>
   
 
@@ -178,7 +370,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这是一个收集开源项目的blog。。。</p>
+        <h3 id="依赖注入库"><a href="#依赖注入库" class="headerlink" title="依赖注入库"></a>依赖注入库</h3><p><a href="https://github.com/appsquickly/Typhoon/" target="_blank" rel="external">typhoon</a><br>可配合<a href="http://blog.sunnyxx.com/2014/08/24/objc-duck/" target="_blank" rel="external">鸭子对象1</a>和<a href="http://blog.sunnyxx.com/2014/08/26/objc-duck-advanced/" target="_blank" rel="external">鸭子对象2</a>一起看，助于理解OC的动态代理，可以利用动态代理实现去model化，只需要简单声明协议即可。</p>
 
       
 
@@ -295,19 +487,19 @@
 
 
   
-    <article id="post-StudyNotes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-NSMethodSignature" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/22/StudyNotes/">学习笔记</a>
+      <a class="article-title" href="/2017/09/22/NSMethodSignature/">NSMethodSignature</a>
     </h1>
   
 
         
-        <a href="/2017/09/22/StudyNotes/" class="archive-article-date">
+        <a href="/2017/09/22/NSMethodSignature/" class="archive-article-date">
   	<time datetime="2017-09-22T07:42:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
 </a>
         
@@ -315,7 +507,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>NSMethodSignature对象是OC的方法签名，它按照顺序保存了一个方法的返回值类型及所有参数类型，包含OC消息发送隐藏的两个参数Self及_cmd。方法签名其实是经过OC编码得出来的一个C字符串，编码方式可以参考nshipster大神的这篇博客<a href="http://nshipster.cn/type-encodings/" target="_blank" rel="external">OC Type Encodings</a>.</p>
+
       
 
       
@@ -328,11 +521,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">runtime</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">N</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">方法签名</a>
         		</li>
       		
 		</ul>
@@ -353,7 +546,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/22/StudyNotes/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/22/NSMethodSignature/">展开全文 >></a>
         </p>
       
 
@@ -407,6 +600,12 @@
 <li><p><a href="http://nshipster.cn/type-encodings/" target="_blank" rel="external">@encode</a></p>
 <p>  Objective-C 的编译器指令 @encode()</p>
 </li>
+</ul>
+<h3 id="图标库"><a href="#图标库" class="headerlink" title="图标库"></a>图标库</h3><ul>
+<li><a href="http://www.iconfont.cn" target="_blank" rel="external">IconFont图标</a></li>
+</ul>
+<h3 id="社区"><a href="#社区" class="headerlink" title="社区"></a>社区</h3><ul>
+<li><a href="https://yq.aliyun.com" target="_blank" rel="external">阿里 云栖社区</a></li>
 </ul>
 
       
@@ -718,11 +917,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+                <a href="javascript:void(0)" class="js-tag color3">runtime</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">N</a>
+                <a href="javascript:void(0)" class="js-tag color5">方法签名</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">weex</a>
               </li>
             
             <div class="clearfix"></div>
